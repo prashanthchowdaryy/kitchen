@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu - Devi's Kitchen</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <header id="navbar">
+        <nav>
+            <a href="index.html#home" class="logo">
+                <img src="Devis_Kitchen_Logo_NoBG.png" alt="Devi's Kitchen Logo">
+            </a>
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" class="theme-toggle-btn">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="menu-page">
+            <div class="menu-header">
+                <h1>Our Culinary Offerings</h1>
+            </div>
+
+            <div id="signature" class="menu-category-wrapper">
+                <h3 class="menu-category-title">Signature Dishes</h3>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item"
+                     data-title="Spiced Lamb Chops"
+                     data-img="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500"
+                     data-desc="Tender lamb chops marinated in a secret blend of 20 spices, then grilled to perfection. Served with mint chutney."
+                     data-price="₹1250">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500" alt="Spiced Lamb Chops" class="modal-trigger">
+                    <div class="menu-item-content">
+                        <h4>Spiced Lamb Chops</h4>
+                        <p class="menu-item-description">Tender lamb chops marinated in a secret blend of 20 spices, then grilled to perfection. Served with mint chutney.</p>
+                        <p class="menu-item-price">₹1250</p>
+                    </div>
+                </div>
+                 <div class="menu-item"
+                     data-title="Saffron Risotto"
+                     data-img="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=500"
+                     data-desc="Creamy Arborio rice cooked with delicate saffron threads, parmesan cheese, and a hint of white wine."
+                     data-price="₹850">
+                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=500" alt="Saffron Risotto" class="modal-trigger">
+                    <div class="menu-item-content">
+                        <h4>Saffron Risotto</h4>
+                        <p class="menu-item-description">Creamy Arborio rice cooked with delicate saffron threads, parmesan cheese, and a hint of white wine.</p>
+                        <p class="menu-item-price">₹850</p>
+                    </div>
+                </div>
+                <div class="menu-item"
+                     data-title="Velvet Pancakes"
+                     data-img="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=500"
+                     data-desc="Fluffy, buttermilk pancakes served with maple syrup, fresh berries, and a dollop of whipped cream."
+                     data-price="₹600">
+                     <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=500" alt="Velvet Pancakes" class="modal-trigger">
+                     <div class="menu-item-content">
+                        <h4>Velvet Pancakes</h4>
+                        <p class="menu-item-description">Fluffy, buttermilk pancakes served with maple syrup, fresh berries, and a dollop of whipped cream.</p>
+                        <p class="menu-item-price">₹600</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="appetizers" class="menu-category-wrapper">
+                <h3 class="menu-category-title">Appetizers</h3>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item"
+                     data-title="Classic Samosa"
+                     data-img="https://images.unsplash.com/photo-1598020419731-987353f88924?w=500"
+                     data-desc="Crispy pastry filled with spiced potatoes and peas, served with tamarind and mint chutneys."
+                     data-price="₹350">
+                    <img src="https://images.unsplash.com/photo-1598020419731-987353f88924?w=500" alt="Samosa" class="modal-trigger">
+                    <div class="menu-item-content">
+                        <h4>Classic Samosa</h4>
+                        <p class="menu-item-description">Crispy pastry filled with spiced potatoes and peas, served with tamarind and mint chutneys.</p>
+                        <p class="menu-item-price">₹350</p>
+                    </div>
+                </div>
+                <div class="menu-item"
+                     data-title="Paneer Tikka Shashlik"
+                     data-img="https://images.unsplash.com/photo-1625944022799-41808b8b3353?w=500"
+                     data-desc="Cottage cheese cubes marinated in yogurt and spices, grilled with bell peppers and onions."
+                     data-price="₹550">
+                    <img src="https://images.unsplash.com/photo-1625944022799-41808b8b3353?w=500" alt="Paneer Tikka" class="modal-trigger">
+                    <div class="menu-item-content">
+                        <h4>Paneer Tikka Shashlik</h4>
+                        <p class="menu-item-description">Cottage cheese cubes marinated in yogurt and spices, grilled with bell peppers and onions.</p>
+                        <p class="menu-item-price">₹550</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <p>&copy; 2025 Devi's Kitchen. All Rights Reserved.</p>
+        <div class="socials">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <div id="item-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <img id="modal-img" src="" alt="Dish Image">
+            <h2 id="modal-title"></h2>
+            <p id="modal-desc"></p>
+            <p id="modal-price"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

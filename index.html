@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devi's Kitchen - Where Tradition Meets Taste</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <header id="navbar">
+        <nav>
+            <a href="#home" class="logo">
+                <img src="Devis_Kitchen_Logo_NoBG.png" alt="Devi's Kitchen Logo">
+            </a>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" class="theme-toggle-btn">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-video-wrapper">
+                <video playsinline autoplay muted loop poster="hero-poster.jpg" id="bgvideo">
+                    <source src="50mb.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-content">
+                <h1>Welcome to Devi’s Kitchen</h1>
+                <p>Where Tradition Meets Taste</p>
+                <a href="menu.html" class="btn-primary">View Our Menu</a>
+            </div>
+        </section>
+
+        <section id="menu" class="showcase">
+            <h2>Our Signature Creations</h2>
+            <div class="dish-grid">
+                <a href="menu.html#signature" class="dish-card-link">
+                    <div class="dish-card">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500" alt="Signature Dish 1">
+                        <div class="dish-info">
+                            <h3>Spiced Lamb Chops</h3>
+                        </div>
+                    </div>
+                </a>
+                <a href="menu.html#signature" class="dish-card-link">
+                    <div class="dish-card">
+                        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=500" alt="Signature Dish 2">
+                        <div class="dish-info">
+                            <h3>Saffron Risotto</h3>
+                        </div>
+                    </div>
+                </a>
+                <a href="menu.html#signature" class="dish-card-link">
+                    <div class="dish-card">
+                        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=500" alt="Signature Dish 3">
+                        <div class="dish-info">
+                            <h3>Velvet Pancakes</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="reviews" class="testimonials">
+            <h2>What Our Guests Say</h2>
+            <div class="review-grid">
+                <div class="review-card">
+                    <p>"An unforgettable experience. The blend of traditional spices and modern presentation was pure genius. I'll be back!"</p>
+                    <span class="reviewer">- Anjali P.</span>
+                </div>
+                 <div class="review-card">
+                    <p>"The ambiance is as beautiful as the food is delicious. A true gem in the heart of the city."</p>
+                    <span class="reviewer">- Rohan S.</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="reservations" class="booking">
+            <h2>Reserve Your Table</h2>
+            <form class="booking-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+                <input type="date" name="date" required>
+                <input type="time" name="time" required>
+                <input type="number" name="guests" placeholder="No. of Guests" min="1" required>
+                <button type="submit" class="btn-primary">Book Now</button>
+            </form>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <p>&copy; 2025 Devi's Kitchen. All Rights Reserved.</p>
+        <div class="socials">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

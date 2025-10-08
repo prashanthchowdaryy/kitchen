@@ -1,0 +1,530 @@
+/* ------------------- */
+/* CSS Variables & Setup */
+/* ------------------- */
+:root {
+    --white: #FEFEFE;
+    --gold: #D4AF37;
+    --charcoal: #1A1A1A;
+    --background-color: var(--white);
+    --text-color: var(--charcoal);
+    --heading-font: 'Playfair Display', serif;
+    --body-font: 'Lato', sans-serif;
+}
+
+body.dark-mode {
+    --background-color: var(--charcoal);
+    --text-color: var(--white);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ------------------- */
+/* Header & Navigation */
+/* ------------------- */
+#navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: transparent;
+    padding: 20px 5%;
+    transition: background-color 0.4s, padding 0.4s;
+}
+
+#navbar.scrolled {
+    background-color: var(--background-color);
+    padding: 15px 5%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+#navbar nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#navbar .logo {
+    font-family: var(--heading-font);
+    font-size: 1.8rem;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+#navbar ul {
+    display: flex;
+    list-style: none;
+}
+
+#navbar ul li {
+    margin: 0 20px;
+}
+
+#navbar ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+/* Golden underline effect on hover */
+#navbar ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--gold);
+    transition: width 0.3s;
+}
+
+#navbar ul li a:hover::after {
+    width: 100%;
+}
+
+/* ------------------- */
+/* Theme Toggle Button */
+/* ------------------- */
+.theme-toggle-btn {
+    background: none;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle-btn .fa-sun { display: block; }
+.theme-toggle-btn .fa-moon { display: none; }
+body.dark-mode .theme-toggle-btn .fa-sun { display: none; }
+body.dark-mode .theme-toggle-btn .fa-moon { display: block; }
+
+
+/* ------------------- */
+/* Hero Section */
+/* ------------------- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    color: white; /* Text is always white on the hero */
+}
+
+.hero-video-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -2;
+}
+
+#bgvideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Black overlay for text readability */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+.hero-content h1 {
+    font-family: var(--heading-font);
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+/* ------------------- */
+/* General Sections & Buttons */
+/* ------------------- */
+section {
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2 {
+    font-family: var(--heading-font);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--gold);
+}
+
+.btn-primary {
+    background-color: var(--gold);
+    color: var(--white);
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 5px;
+    border: 2px solid var(--gold);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--gold);
+}
+
+/* ------------------- */
+/* Showcase & Reviews */
+/* ------------------- */
+.dish-grid, .review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.dish-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.dish-card img {
+    width: 100%;
+    display: block;
+    transition: transform 0.4s;
+}
+
+.dish-card:hover img {
+    transform: scale(1.1);
+}
+
+.dish-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+    padding: 40px 20px 20px;
+}
+
+.dish-info h3 {
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+}
+
+.review-card {
+    background-color: var(--background-color);
+    padding: 30px;
+    border: 1px solid var(--gold);
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+}
+
+.review-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.review-card .reviewer {
+    font-weight: 700;
+    color: var(--gold);
+}
+
+/* ------------------- */
+/* Booking Form */
+/* ------------------- */
+.booking-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.booking-form input {
+    width: 100%;
+    padding: 15px;
+    font-family: var(--body-font);
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.dark-mode .booking-form input {
+    background-color: #333;
+    border-color: #555;
+    color: var(--white);
+}
+
+.booking-form input:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.booking-form button {
+    grid-column: 1 / -1; /* Span full width */
+}
+
+/* ------------------- */
+/* Footer */
+/* ------------------- */
+footer {
+    text-align: center;
+    padding: 40px 5%;
+    border-top: 1px solid var(--gold);
+}
+
+.socials a {
+    color: var(--gold);
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: opacity 0.3s;
+}
+
+.socials a:hover {
+    opacity: 0.7;
+}
+/* Add this to your style.css file */
+
+#navbar .logo img {
+    height: 120px; /* Increased initial size */
+    width: auto;
+    display: block;
+    transition: height 0.4s;
+}
+
+#navbar.scrolled .logo img {
+    height: 60px; /* Still smaller when scrolled, but a good size */
+}
+
+/* Also, add this rule to ensure the logo is visible in dark mode */
+body.dark-mode #navbar .logo img {
+    filter: brightness(1.2); /* Slightly brightens the gold to stand out more on dark background */
+}
+/* ------------------- */
+/* Menu Page Styles    */
+/* ------------------- */
+.menu-page section {
+    padding-top: 120px; /* Give space below fixed header */
+}
+
+.menu-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.menu-header h1 {
+    font-family: var(--heading-font);
+    font-size: 3.5rem;
+    color: var(--gold);
+}
+
+.menu-category-wrapper {
+    text-align: center; /* Centers the inline-block title */
+    margin-top: 50px;
+}
+
+.menu-category-title {
+    font-family: var(--heading-font);
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 40px;
+    display: inline-block; /* Allows bottom border to fit content */
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 10px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.menu-item {
+    background-color: var(--background-color);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+body.dark-mode .menu-item {
+    background-color: #222;
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15);
+}
+
+.menu-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.menu-item-content {
+    padding: 25px;
+}
+
+.menu-item h4 {
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.menu-item-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    min-height: 50px; /* Helps align items with different text lengths */
+}
+
+.menu-item-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-align: right;
+}
+
+/* Make the whole card on the homepage a single link */
+.dish-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+/* Find this existing rule in your CSS */
+.dish-card img {
+    width: 100%;
+    height: 400px; /* ADD THIS LINE */
+    object-fit: cover; /* AND ADD THIS LINE */
+    display: block;
+    transition: transform 0.4s;
+}
+/* ------------------- */
+/* Item Modal Styles   */
+/* ------------------- */
+.menu-item img.modal-trigger {
+    cursor: pointer;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+    animation-name: fadeIn;
+    animation-duration: 0.4s;
+}
+
+.modal-content {
+    background-color: var(--background-color);
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+@keyframes slideIn {
+  from {transform: translateY(-50px); opacity: 0}
+  to {transform: translateY(0); opacity: 1}
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--text-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.modal-content h2 {
+    text-align: left;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.modal-content #modal-desc {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+#modal-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--gold);
+    text-align: right;
+    margin-top: 20px;
+}
