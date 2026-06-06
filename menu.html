@@ -9,126 +9,647 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* ══════════════════════════════
+           MENU PAGE
+        ══════════════════════════════ */
+        body { overflow-x: hidden; }
+
+        .menu-page {
+            padding: 120px 5% 140px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .menu-header {
+            text-align: center;
+            margin-bottom: 44px;
+        }
+        .menu-header h1 {
+            font-family: var(--heading-font);
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            color: var(--gold);
+            line-height: 1.1;
+        }
+        .menu-header p {
+            margin-top: 10px;
+            font-size: 1rem;
+            opacity: 0.6;
+        }
+
+        /* Filter tabs */
+        .menu-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 52px;
+        }
+        .menu-tab {
+            padding: 9px 22px;
+            border-radius: 50px;
+            border: 2px solid var(--gold);
+            background: transparent;
+            color: var(--text-color);
+            font-family: var(--body-font);
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.22s;
+            letter-spacing: 0.02em;
+        }
+        .menu-tab:hover,
+        .menu-tab.active {
+            background: var(--gold);
+            color: #111;
+        }
+
+        /* Section */
+        .menu-section { margin-bottom: 60px; }
+        .menu-section-title {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 22px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+        }
+        .menu-section-title i { font-size: 1.1rem; opacity: 0.85; }
+
+        /* Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* Card */
+        .menu-card {
+            background: var(--background-color);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.28s ease, box-shadow 0.28s ease;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+        body.dark-mode .menu-card {
+            background: #1c1c1c;
+            border-color: rgba(212,175,55,0.2);
+        }
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 36px rgba(212,175,55,0.13);
+        }
+
+        /* Image area */
+        .menu-card-img {
+            position: relative;
+            height: 190px;
+            overflow: hidden;
+            background: #2a2a2a;
+        }
+        .menu-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .menu-card:hover .menu-card-img img { transform: scale(1.07); }
+
+        /* Veg / non-veg dot indicator */
+        .veg-dot {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 3px;
+            border: 2px solid #fff;
+            background: #fff;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+        }
+        .veg-dot span {
+            display: block;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+        .veg-dot.veg span   { background: #27ae60; }
+        .veg-dot.nonveg span{ background: #e74c3c; }
+
+        /* Popular badge */
+        .popular-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--gold);
+            color: #111;
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 50px;
+            white-space: nowrap;
+        }
+
+        /* Card body */
+        .menu-card-body {
+            padding: 16px 16px 14px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 6px;
+        }
+        .menu-card-name {
+            font-family: var(--heading-font);
+            font-size: 1.15rem;
+            color: var(--text-color);
+            line-height: 1.2;
+        }
+        .menu-card-desc {
+            font-size: 0.82rem;
+            line-height: 1.55;
+            opacity: 0.62;
+            color: var(--text-color);
+            flex: 1;
+        }
+
+        /* Footer: price + add button */
+        .menu-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 12px;
+            gap: 10px;
+        }
+        .menu-card-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gold);
+            white-space: nowrap;
+        }
+
+        .add-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            background: var(--gold);
+            color: #111;
+            border: none;
+            border-radius: 50px;
+            font-family: var(--body-font);
+            font-size: 0.83rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            white-space: nowrap;
+        }
+        .add-btn:hover { background: #c49c2a; transform: scale(1.04); }
+        .add-btn.added { background: #27ae60; color: #fff; }
+
+        /* ══ Sticky cart bar ══ */
+        .cart-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 500;
+            background: var(--gold);
+            color: #111;
+            padding: 14px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transform: translateY(110%);
+            transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+            box-shadow: 0 -4px 30px rgba(0,0,0,0.25);
+        }
+        .cart-bar.visible { transform: translateY(0); }
+        .cart-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .cart-icon-wrap { position: relative; }
+        .cart-icon-wrap i { font-size: 1.3rem; }
+        .cart-count {
+            position: absolute;
+            top: -7px; right: -9px;
+            background: #111;
+            color: var(--gold);
+            font-size: 0.62rem;
+            font-weight: 700;
+            width: 17px; height: 17px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+        }
+        .cart-bar-summary { font-weight: 700; font-size: 0.98rem; }
+        .cart-bar-total   { font-size: 0.82rem; opacity: 0.72; }
+        .cart-proceed-btn {
+            background: #111;
+            color: var(--gold);
+            border: none;
+            padding: 11px 26px;
+            border-radius: 50px;
+            font-family: var(--body-font);
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+        .cart-proceed-btn:hover { background: #1a1a1a; }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            .menu-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .menu-card-img { height: 140px; }
+            .menu-card-body { padding: 11px 11px 10px; }
+            .menu-card-name { font-size: 0.95rem; }
+            .menu-card-desc { display: none; }
+            .add-btn { padding: 7px 12px; font-size: 0.78rem; }
+        }
+        @media (max-width: 380px) {
+            .menu-grid { grid-template-columns: 1fr; }
+            .menu-card-img { height: 180px; }
+            .menu-card-desc { display: block; }
+        }
+    </style>
 </head>
 <body>
 
-    <header id="navbar">
-        <nav>
-            <a href="index.html#home" class="logo">
-                <img src="Devis_Kitchen_Logo_NoBG.png" alt="Devi's Kitchen Logo">
-            </a>
-            <ul>
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-            <button id="theme-toggle" class="theme-toggle-btn">
-                <i class="fas fa-sun"></i>
-                <i class="fas fa-moon"></i>
-            </button>
-        </nav>
-    </header>
+<header id="navbar">
+    <nav>
+        <a href="index.html#home" class="logo">
+            <img src="Devis_Kitchen_Logo_NoBG.png" alt="Devi's Kitchen Logo">
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul id="nav-menu">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="index.html#contact-section">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" class="theme-toggle-btn">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+</header>
 
-    <main>
-        <section class="menu-page">
-            <div class="menu-header">
-                <h1>Our Culinary Offerings</h1>
-            </div>
+<main>
+<div class="menu-page">
 
-            <div id="signature" class="menu-category-wrapper">
-                <h3 class="menu-category-title">Signature Dishes</h3>
-            </div>
-            <div class="menu-grid">
-                <div class="menu-item"
-                     data-title="Spiced Lamb Chops"
-                     data-img="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500"
-                     data-desc="Tender lamb chops marinated in a secret blend of 20 spices, then grilled to perfection. Served with mint chutney."
-                     data-price="₹1250">
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500" alt="Spiced Lamb Chops" class="modal-trigger">
-                    <div class="menu-item-content">
-                        <h4>Spiced Lamb Chops</h4>
-                        <p class="menu-item-description">Tender lamb chops marinated in a secret blend of 20 spices, then grilled to perfection. Served with mint chutney.</p>
-                        <p class="menu-item-price">₹1250</p>
-                    </div>
+    <div class="menu-header">
+        <h1>Our Menu</h1>
+        <p>Authentic South Indian flavours, crafted with love in Warangal</p>
+    </div>
+
+    <div class="menu-tabs">
+        <button class="menu-tab active" data-filter="all">All Items</button>
+        <button class="menu-tab" data-filter="signature">Signature</button>
+        <button class="menu-tab" data-filter="tiffins">Tiffins</button>
+        <button class="menu-tab" data-filter="mains">Main Course</button>
+        <button class="menu-tab" data-filter="desserts">Desserts &amp; Drinks</button>
+    </div>
+
+    <!-- ── SIGNATURE ── -->
+    <div class="menu-section" data-category="signature">
+        <div class="menu-section-title"><i class="fas fa-crown"></i> Signature Dishes</div>
+        <div class="menu-grid">
+
+            <div class="menu-card" data-id="1" data-name="Masala Dosa" data-price="180">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&auto=format&fit=crop" alt="Masala Dosa">
+                    <div class="veg-dot veg"><span></span></div>
+                    <span class="popular-badge">⭐ Most Loved</span>
                 </div>
-                 <div class="menu-item"
-                     data-title="Saffron Risotto"
-                     data-img="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=500"
-                     data-desc="Creamy Arborio rice cooked with delicate saffron threads, parmesan cheese, and a hint of white wine."
-                     data-price="₹850">
-                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=500" alt="Saffron Risotto" class="modal-trigger">
-                    <div class="menu-item-content">
-                        <h4>Saffron Risotto</h4>
-                        <p class="menu-item-description">Creamy Arborio rice cooked with delicate saffron threads, parmesan cheese, and a hint of white wine.</p>
-                        <p class="menu-item-price">₹850</p>
-                    </div>
-                </div>
-                <div class="menu-item"
-                     data-title="Velvet Pancakes"
-                     data-img="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=500"
-                     data-desc="Fluffy, buttermilk pancakes served with maple syrup, fresh berries, and a dollop of whipped cream."
-                     data-price="₹600">
-                     <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=500" alt="Velvet Pancakes" class="modal-trigger">
-                     <div class="menu-item-content">
-                        <h4>Velvet Pancakes</h4>
-                        <p class="menu-item-description">Fluffy, buttermilk pancakes served with maple syrup, fresh berries, and a dollop of whipped cream.</p>
-                        <p class="menu-item-price">₹600</p>
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Masala Dosa</div>
+                    <p class="menu-card-desc">Crispy golden crepe filled with spiced potato masala, served with coconut chutney and sambar.</p>
+                    <div class="menu-card-footer">
+                        <span class="menu-card-price">₹180</span>
+                        <button class="add-btn" data-id="1"><i class="fas fa-plus"></i> Add</button>
                     </div>
                 </div>
             </div>
 
-            <div id="appetizers" class="menu-category-wrapper">
-                <h3 class="menu-category-title">Appetizers</h3>
-            </div>
-            <div class="menu-grid">
-                <div class="menu-item"
-                     data-title="Classic Samosa"
-                     data-img="https://images.unsplash.com/photo-1598020419731-987353f88924?w=500"
-                     data-desc="Crispy pastry filled with spiced potatoes and peas, served with tamarind and mint chutneys."
-                     data-price="₹350">
-                    <img src="https://images.unsplash.com/photo-1598020419731-987353f88924?w=500" alt="Samosa" class="modal-trigger">
-                    <div class="menu-item-content">
-                        <h4>Classic Samosa</h4>
-                        <p class="menu-item-description">Crispy pastry filled with spiced potatoes and peas, served with tamarind and mint chutneys.</p>
-                        <p class="menu-item-price">₹350</p>
-                    </div>
+            <div class="menu-card" data-id="2" data-name="Chettinad Chicken Curry" data-price="420">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&auto=format&fit=crop" alt="Chettinad Chicken Curry">
+                    <div class="veg-dot nonveg"><span></span></div>
+                    <span class="popular-badge">Chef's Special</span>
                 </div>
-                <div class="menu-item"
-                     data-title="Paneer Tikka Shashlik"
-                     data-img="https://images.unsplash.com/photo-1625944022799-41808b8b3353?w=500"
-                     data-desc="Cottage cheese cubes marinated in yogurt and spices, grilled with bell peppers and onions."
-                     data-price="₹550">
-                    <img src="https://images.unsplash.com/photo-1625944022799-41808b8b3353?w=500" alt="Paneer Tikka" class="modal-trigger">
-                    <div class="menu-item-content">
-                        <h4>Paneer Tikka Shashlik</h4>
-                        <p class="menu-item-description">Cottage cheese cubes marinated in yogurt and spices, grilled with bell peppers and onions.</p>
-                        <p class="menu-item-price">₹550</p>
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Chettinad Chicken Curry</div>
+                    <p class="menu-card-desc">Rich aromatic curry slow-cooked with freshly ground kalpasi and star anise. Served with parotta.</p>
+                    <div class="menu-card-footer">
+                        <span class="menu-card-price">₹420</span>
+                        <button class="add-btn" data-id="2"><i class="fas fa-plus"></i> Add</button>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
 
-    <footer id="contact">
-        <p>&copy; 2025 Devi's Kitchen. All Rights Reserved.</p>
-        <div class="socials">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
-    </footer>
+            <div class="menu-card" data-id="3" data-name="Kerala Fish Curry" data-price="380">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&auto=format&fit=crop" alt="Kerala Fish Curry">
+                    <div class="veg-dot nonveg"><span></span></div>
+                </div>
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Kerala Fish Curry</div>
+                    <p class="menu-card-desc">Fresh fish simmered in tangy coconut milk with kudampuli and curry leaves. Served with red rice.</p>
+                    <div class="menu-card-footer">
+                        <span class="menu-card-price">₹380</span>
+                        <button class="add-btn" data-id="3"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
 
-    <div id="item-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <img id="modal-img" src="" alt="Dish Image">
-            <h2 id="modal-title"></h2>
-            <p id="modal-desc"></p>
-            <p id="modal-price"></p>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- ── TIFFINS ── -->
+    <div class="menu-section" data-category="tiffins">
+        <div class="menu-section-title"><i class="fas fa-seedling"></i> Tiffins &amp; Starters</div>
+        <div class="menu-grid">
+
+            <div class="menu-card" data-id="4" data-name="Idli Sambar" data-price="120">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&auto=format&fit=crop" alt="Idli Sambar">
+                    <div class="veg-dot veg"><span></span></div>
+                </div>
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Idli Sambar</div>
+                    <p class="menu-card-desc">Soft steamed rice cakes with piping hot sambar and three varieties of freshly ground chutneys.</p>
+                    <div class="menu-card-footer">
+                        <span class="menu-card-price">₹120</span>
+                        <button class="add-btn" data-id="4"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-id="5" data-name="Medu Vada" data-price="100">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1606491048802-8342506d6471?w=600&auto=format&fit=crop" alt="Medu Vada">
+                    <div class="veg-dot veg"><span></span></div>
+                </div>
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Medu Vada</div>
+                    <p class="menu-card-desc">Crispy ring-shaped lentil fritters, fluffy inside, golden outside. Served with sambar and chutney.</p>
+                    <div class="menu-card-footer">
+                        <span class="menu-card-price">₹100</span>
+                        <button class="add-btn" data-id="5"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-id="6" data-name="Pesarattu" data-price="140">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1630409351241-e90c7c1a0b9a?w=600&auto=format&fit=crop" alt="Pesarattu">
+                    <div class="veg-dot veg"><span></span></div>
+                </div>
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Pesarattu</div>
+                    <p class="menu-card-desc">Andhra-style green moong dal crepe with ginger chutney and upma stuffing. A Telangana classic.</p>
+                    <div class="menu-card-footer">
+                        <span class="menu-card-price">₹140</span>
+                        <button class="add-btn" data-id="6"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-id="7" data-name="Upma" data-price="90">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=600&auto=format&fit=crop" alt="Upma">
+                    <div class="veg-dot veg"><span></span></div>
+                </div>
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Upma</div>
+                    <p class="menu-card-desc">Savoury semolina porridge with vegetables, mustard seeds, and curry leaves. Light and filling.</p>
+                    <div class="menu-card-footer">
+                        <span class="menu-card-price">₹90</span>
+                        <button class="add-btn" data-id="7"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── MAINS ── -->
+    <div class="menu-section" data-category="mains">
+        <div class="menu-section-title"><i class="fas fa-utensils"></i> Main Course</div>
+        <div class="menu-grid">
+
+            <div class="menu-card" data-id="8" data-name="Hyderabadi Dum Biryani" data-price="480">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&auto=format&fit=crop" alt="Biryani">
+                    <div class="veg-dot nonveg"><span></span></div>
+                    <span class="popular-badge">⭐ Best Seller</span>
+                </div>
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Hyderabadi Dum Biryani</div>
+                    <p class="menu-card-desc">Slow-cooked basmati layered with saffron-marinated chicken and caramelised onions. Sealed on dum.</p>
+                    <div class="menu-card-footer">
+                        <span class="menu-card-price">₹480</span>
+                        <button class="add-btn" data-id="8"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-id="9" data-name="Sambar Rice" data-price="160">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=600&auto=format&fit=crop" alt="Sambar Rice">
+                    <div class="veg-dot veg"><span></span></div>
+                </div>
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Sambar Rice</div>
+                    <p class="menu-card-desc">Wholesome steamed rice with tangy vegetable sambar, tempered with mustard and curry leaves.</p>
+                    <div class="menu-card-footer">
+                        <span class="menu-card-price">₹160</span>
+                        <button class="add-btn" data-id="9"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-id="10" data-name="Egg Curry with Appam" data-price="260">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1604579278540-b16e4f2a7104?w=600&auto=format&fit=crop" alt="Egg Curry with Appam">
+                    <div class="veg-dot nonveg"><span></span></div>
+                </div>
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Egg Curry with Appam</div>
+                    <p class="menu-card-desc">Kerala-style creamy egg curry in coconut milk gravy, paired with lacy soft-centred appam.</p>
+                    <div class="menu-card-footer">
+                        <span class="menu-card-price">₹260</span>
+                        <button class="add-btn" data-id="10"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-id="11" data-name="Rasam Rice" data-price="140">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&auto=format&fit=crop" alt="Rasam Rice">
+                    <div class="veg-dot veg"><span></span></div>
+                </div>
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Rasam Rice</div>
+                    <p class="menu-card-desc">Steamed rice with peppery cumin-tomato rasam. Soul-warming South Indian staple with thoran on the side.</p>
+                    <div class="menu-card-footer">
+                        <span class="menu-card-price">₹140</span>
+                        <button class="add-btn" data-id="11"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── DESSERTS ── -->
+    <div class="menu-section" data-category="desserts">
+        <div class="menu-section-title"><i class="fas fa-ice-cream"></i> Desserts &amp; Drinks</div>
+        <div class="menu-grid">
+
+            <div class="menu-card" data-id="12" data-name="Payasam" data-price="120">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&auto=format&fit=crop" alt="Payasam">
+                    <div class="veg-dot veg"><span></span></div>
+                </div>
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Payasam</div>
+                    <p class="menu-card-desc">Traditional South Indian kheer with vermicelli, jaggery, coconut milk, cashews, and raisins.</p>
+                    <div class="menu-card-footer">
+                        <span class="menu-card-price">₹120</span>
+                        <button class="add-btn" data-id="12"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-id="13" data-name="Kesari Bath" data-price="100">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1593526492102-bc6e7b0d9b3f?w=600&auto=format&fit=crop" alt="Kesari Bath">
+                    <div class="veg-dot veg"><span></span></div>
+                </div>
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Kesari Bath</div>
+                    <p class="menu-card-desc">Golden saffron semolina halwa with ghee, cashews, and raisins. A perfect sweet finish.</p>
+                    <div class="menu-card-footer">
+                        <span class="menu-card-price">₹100</span>
+                        <button class="add-btn" data-id="13"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-id="14" data-name="Filter Coffee" data-price="60">
+                <div class="menu-card-img">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&auto=format&fit=crop" alt="Filter Coffee">
+                    <div class="veg-dot veg"><span></span></div>
+                </div>
+                <div class="menu-card-body">
+                    <div class="menu-card-name">Filter Coffee</div>
+                    <p class="menu-card-desc">Iconic South Indian decoction coffee with chicory and frothy hot milk, served in traditional davara set.</p>
+                    <div class="menu-card-footer">
+                        <span class="menu-card-price">₹60</span>
+                        <button class="add-btn" data-id="14"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</main>
+
+<!-- Sticky Cart Bar -->
+<div class="cart-bar" id="cartBar">
+    <div class="cart-bar-left">
+        <div class="cart-icon-wrap">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+        <div>
+            <div class="cart-bar-summary" id="cartSummary">0 items</div>
+            <div class="cart-bar-total"   id="cartTotal">₹0</div>
+        </div>
+    </div>
+    <button class="cart-proceed-btn" id="cartProceedBtn">
+        Proceed to Order <i class="fas fa-arrow-right"></i>
+    </button>
+</div>
+
+<footer>
+    <p>&copy; 2025 Devi's Kitchen. All Rights Reserved.</p>
+    <div class="socials">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// ── Cart ──
+let cart = {};
+
+document.querySelectorAll('.menu-card').forEach(card => {
+    const id    = card.dataset.id;
+    const name  = card.dataset.name;
+    const price = parseInt(card.dataset.price);
+    const btn   = card.querySelector('.add-btn');
+
+    btn.addEventListener('click', () => {
+        if (!cart[id]) cart[id] = { name, price, qty: 0 };
+        cart[id].qty++;
+        btn.innerHTML = '<i class="fas fa-check"></i> Added';
+        btn.classList.add('added');
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fas fa-plus"></i> Add';
+            btn.classList.remove('added');
+        }, 1100);
+        updateCart();
+    });
+});
+
+function updateCart() {
+    let qty = 0, total = 0;
+    Object.values(cart).forEach(i => { qty += i.qty; total += i.qty * i.price; });
+    document.getElementById('cartCount').textContent   = qty;
+    document.getElementById('cartSummary').textContent = qty + ' item' + (qty !== 1 ? 's' : '');
+    document.getElementById('cartTotal').textContent   = '₹' + total;
+    document.getElementById('cartBar').classList.toggle('visible', qty > 0);
+}
+
+document.getElementById('cartProceedBtn').addEventListener('click', () => {
+    sessionStorage.setItem('dk_cart', JSON.stringify(cart));
+    window.location.href = 'checkout.html';
+});
+
+// ── Filter tabs ──
+document.querySelectorAll('.menu-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const f = tab.dataset.filter;
+        document.querySelectorAll('.menu-section').forEach(sec => {
+            sec.style.display = (f === 'all' || sec.dataset.category === f) ? '' : 'none';
+        });
+    });
+});
+</script>
 </body>
 </html>
