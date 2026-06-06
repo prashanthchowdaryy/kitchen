@@ -17,11 +17,14 @@
             <a href="#home" class="logo">
                 <img src="Devis_Kitchen_Logo_NoBG.png" alt="Devi's Kitchen Logo">
             </a>
-            <ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul id="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="menu.html">Menu</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact-section">Contact</a></li>
             </ul>
             <button id="theme-toggle" class="theme-toggle-btn">
                 <i class="fas fa-sun"></i>
@@ -31,49 +34,164 @@
     </header>
 
     <main>
+        <!-- ============================
+             ANIMATED HERO SECTION
+             ============================ -->
         <section id="home" class="hero">
+            <!-- Background video — blurred -->
             <div class="hero-video-wrapper">
-                <video playsinline autoplay muted loop poster="hero-poster.jpg" id="bgvideo">
+                <video playsinline autoplay muted loop id="bgvideo">
                     <source src="50mb.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="hero-content">
-                <h1>Welcome to Devi’s Kitchen</h1>
-                <p>Where Tradition Meets Taste</p>
-                <a href="menu.html" class="btn-primary">View Our Menu</a>
+            <!-- Dark + blur overlay -->
+            <div class="hero-overlay"></div>
+
+            <!-- Blob parallax shape -->
+            <div class="hero-blob" id="heroBlob"></div>
+
+            <!-- Dish slides -->
+            <div class="hero-stage">
+                <!-- Slide 1 -->
+                <div class="hero-slide active" data-index="0">
+                    <div class="slide-plate-wrap">
+                        <img class="slide-plate"
+                             src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=700&auto=format&fit=crop""
+                             alt="Masala Dosa">
+                    </div>
+                    <div class="slide-text">
+                        <span class="slide-tag">#1 Most Loved Dish</span>
+                        <h1 class="slide-title">Masala<br><strong>Dosa</strong></h1>
+                        <div class="slide-actions">
+                            <a href="menu.html" class="slide-btn outline"><i class="fas fa-utensils"></i> Order Now</a>
+                            <a href="#menu" class="slide-btn ghost"><i class="fas fa-th-large"></i> View Menu</a>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="hero-slide" data-index="1">
+                    <div class="slide-plate-wrap">
+                        <img class="slide-plate"
+                             src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=700&auto=format&fit=crop""
+                             alt="Chettinad Chicken Curry">
+                    </div>
+                    <div class="slide-text">
+                        <span class="slide-tag">#2 Chef's Special</span>
+                        <h1 class="slide-title">Chettinad<br><strong>Chicken Curry</strong></h1>
+                        <div class="slide-actions">
+                            <a href="menu.html" class="slide-btn outline"><i class="fas fa-utensils"></i> Order Now</a>
+                            <a href="#menu" class="slide-btn ghost"><i class="fas fa-th-large"></i> View Menu</a>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="hero-slide" data-index="2">
+                    <div class="slide-plate-wrap">
+                        <img class="slide-plate"
+                             src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=700&auto=format&fit=crop""
+                             alt="Hyderabadi Biryani">
+                    </div>
+                    <div class="slide-text">
+                        <span class="slide-tag">#3 All-Time Favourite</span>
+                        <h1 class="slide-title">Hyderabadi<br><strong>Dum Biryani</strong></h1>
+                        <div class="slide-actions">
+                            <a href="menu.html" class="slide-btn outline"><i class="fas fa-utensils"></i> Order Now</a>
+                            <a href="#menu" class="slide-btn ghost"><i class="fas fa-th-large"></i> View Menu</a>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="hero-slide" data-index="3">
+                    <div class="slide-plate-wrap">
+                        <img class="slide-plate"
+                             src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=700&auto=format&fit=crop""
+                             alt="Kerala Fish Curry">
+                    </div>
+                    <div class="slide-text">
+                        <span class="slide-tag">#4 Coastal Delight</span>
+                        <h1 class="slide-title">Kerala<br><strong>Fish Curry</strong></h1>
+                        <div class="slide-actions">
+                            <a href="menu.html" class="slide-btn outline"><i class="fas fa-utensils"></i> Order Now</a>
+                            <a href="#menu" class="slide-btn ghost"><i class="fas fa-th-large"></i> View Menu</a>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
+
+            <!-- Thumbnail navigation — real South Indian food photos -->
+            <div class="hero-thumbs">
+                <button class="thumb active" data-slide="0">
+                    <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=120&auto=format&fit=crop"" alt="Masala Dosa">
+                </button>
+                <button class="thumb" data-slide="1">
+                    <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=120&auto=format&fit=crop"" alt="Chettinad Curry">
+                </button>
+                <button class="thumb" data-slide="2">
+                    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=120&auto=format&fit=crop"" alt="Biryani">
+                </button>
+                <button class="thumb" data-slide="3">
+                    <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=120&auto=format&fit=crop"" alt="Fish Curry">
+                </button>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="hero-progress"><div class="hero-progress-bar" id="heroProgressBar"></div></div>
         </section>
 
+        <!-- MIDDLE SECTION -->
+        <!-- FULLSCREEN DISH VIEWER -->
         <section id="menu" class="showcase">
             <h2>Our Signature Creations</h2>
+            <p class="showcase-hint">Tap any dish to explore</p>
             <div class="dish-grid">
-                <a href="menu.html#signature" class="dish-card-link">
-                    <div class="dish-card">
-                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500" alt="Signature Dish 1">
-                        <div class="dish-info">
-                            <h3>Spiced Lamb Chops</h3>
-                        </div>
-                    </div>
-                </a>
-                <a href="menu.html#signature" class="dish-card-link">
-                    <div class="dish-card">
-                        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=500" alt="Signature Dish 2">
-                        <div class="dish-info">
-                            <h3>Saffron Risotto</h3>
-                        </div>
-                    </div>
-                </a>
-                <a href="menu.html#signature" class="dish-card-link">
-                    <div class="dish-card">
-                        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=500" alt="Signature Dish 3">
-                        <div class="dish-info">
-                            <h3>Velvet Pancakes</h3>
-                        </div>
-                    </div>
-                </a>
+                <div class="dish-card" data-index="0">
+                    <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&auto=format&fit=crop"" alt="Masala Dosa">
+                    <div class="dish-info"><h3>Masala Dosa</h3></div>
+                </div>
+                <div class="dish-card" data-index="1">
+                    <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800&auto=format&fit=crop"" alt="Chettinad Chicken Curry">
+                    <div class="dish-info"><h3>Chettinad Chicken Curry</h3></div>
+                </div>
+                <div class="dish-card" data-index="2">
+                    <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&auto=format&fit=crop"" alt="Kerala Fish Curry">
+                    <div class="dish-info"><h3>Kerala Fish Curry</h3></div>
+                </div>
+                <div class="dish-card" data-index="3">
+                    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&auto=format&fit=crop"" alt="Hyderabadi Biryani">
+                    <div class="dish-info"><h3>Hyderabadi Biryani</h3></div>
+                </div>
+                <div class="dish-card" data-index="4">
+                    <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&auto=format&fit=crop"" alt="Idli Sambar">
+                    <div class="dish-info"><h3>Idli Sambar</h3></div>
+                </div>
+                <div class="dish-card" data-index="5">
+                    <img src="https://images.unsplash.com/photo-1606491048802-8342506d6471?w=800&auto=format&fit=crop"" alt="Medu Vada">
+                    <div class="dish-info"><h3>Medu Vada</h3></div>
+                </div>
             </div>
         </section>
 
+        <!-- FULLSCREEN LIGHTBOX -->
+        <div id="dish-lightbox" class="dish-lightbox" aria-hidden="true">
+            <button class="lb-close" id="lbClose" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="lb-main">
+                <img id="lbMainImg" src="" alt="">
+                <div class="lb-info">
+                    <h2 id="lbTitle"></h2>
+                    <a href="menu.html" class="slide-btn outline lb-order"><i class="fas fa-utensils"></i> Order This</a>
+                </div>
+            </div>
+            <div class="lb-thumbs" id="lbThumbs"></div>
+        </div>
+
+        <!-- REVIEWS SECTION -->
         <section id="reviews" class="testimonials">
             <h2>What Our Guests Say</h2>
             <div class="review-grid">
@@ -81,27 +199,47 @@
                     <p>"An unforgettable experience. The blend of traditional spices and modern presentation was pure genius. I'll be back!"</p>
                     <span class="reviewer">- Anjali P.</span>
                 </div>
-                 <div class="review-card">
+                <div class="review-card">
                     <p>"The ambiance is as beautiful as the food is delicious. A true gem in the heart of the city."</p>
                     <span class="reviewer">- Rohan S.</span>
                 </div>
             </div>
         </section>
 
-        <section id="reservations" class="booking">
-            <h2>Reserve Your Table</h2>
-            <form class="booking-form">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="tel" name="phone" placeholder="Phone Number" required>
-                <input type="date" name="date" required>
-                <input type="time" name="time" required>
-                <input type="number" name="guests" placeholder="No. of Guests" min="1" required>
-                <button type="submit" class="btn-primary">Book Now</button>
-            </form>
+        <!-- CONTACT SECTION -->
+        <section id="contact-section" class="contact-section">
+            <h2>Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div><h4>Our Location</h4><p>12, Lakshmi Nagar, Warangal, Telangana 506004</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div><h4>Call Us</h4><p>+91 98765 43210</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div><h4>Email</h4><p>hello@deviskitchen.in</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div><h4>Hours</h4><p>Mon – Sun: 7:00 AM – 10:30 PM</p></div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="tel" name="phone" placeholder="Phone Number">
+                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
         </section>
     </main>
 
-    <footer id="contact">
+    <footer>
         <p>&copy; 2025 Devi's Kitchen. All Rights Reserved.</p>
         <div class="socials">
             <a href="#"><i class="fab fa-instagram"></i></a>
